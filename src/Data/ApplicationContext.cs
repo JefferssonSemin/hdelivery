@@ -1,7 +1,7 @@
+using EFCore.HDelivery.Domain;
 using Microsoft.EntityFrameworkCore;
-using src.Domain;
 
-namespace str.Data
+namespace EFCore.HDelivery.Data
 {
     public class ApplicationContext: DbContext
     {

@@ -1,4 +1,4 @@
-namespace src.Domain.Abstract
+namespace EFCore.HDelivery.Domain.Abstract
 {
   public abstract class BaseEntity
   {

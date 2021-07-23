@@ -1,4 +1,4 @@
-namespace src.Domain
+namespace EFCore.HDelivery.Domain
 {
   public class Store : Abstract.BaseEntity
   {

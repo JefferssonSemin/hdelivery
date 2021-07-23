@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCore.HDelivery.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,9 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using str.Data;
 
-namespace EFCore.Multitenant
+namespace EFCore.HDelivery
 {
     public class Startup
     {
@@ -32,7 +32,7 @@ namespace EFCore.Multitenant
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EFCore.Multitenant", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EFCore.HDelivery", Version = "v1" });
             });
 
             services.AddDbContext<ApplicationContext>(p => 
@@ -84,4 +84,5 @@ namespace EFCore.Multitenant
         
     //     }
     // }
+}
 }

@@ -12,5 +12,21 @@ namespace str.Data
       {
           
       }
+
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+        modelBuilder.Entity<Store>().HasData(
+          new Store {Id = 1, Name = "Brusque"},
+          new Store {Id = 2, Name = "Joaçaba"},
+          new Store {Id = 3, Name = "Curitibanos"}
+        );
+
+          modelBuilder.Entity<Product>().HasData(
+          new Product {Id = 1, Description = "Pão de queijo"},
+          new Product {Id = 2, Description = "Caputino"},
+          new Product {Id = 3, Description = "Coxinha"}
+        );
+        
+      }
     }
 }

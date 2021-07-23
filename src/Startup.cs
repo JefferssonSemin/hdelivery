@@ -36,7 +36,7 @@ namespace EFCore.Multitenant
             });
 
             services.AddDbContext<ApplicationContext>(p => 
-            p.UseSqlServer("Data source=(localdb)\\mssqlocaldb; Initial Catolog=Tenant99; Integrated Secutiry = true")
+            p.UseSqlServer(Configuration.GetConnectionString("Tenant"))
             .LogTo(Console.WriteLine)
             .EnableSensitiveDataLogging());
         }
@@ -51,7 +51,7 @@ namespace EFCore.Multitenant
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EFCore.Multitenant v1"));
             }
 
-            DatabaseInitialize(app);
+            // DatabaseInitialize(app);
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -64,24 +64,24 @@ namespace EFCore.Multitenant
             });
         }
 
-        private void DatabaseInitialize(IApplicationBuilder app){
+    //     private void DatabaseInitialize(IApplicationBuilder app){
             
-            using var db = app.ApplicationServices
-            .CreateScope()
-            .ServiceProvider
-            .GetRequiredService<ApplicationContext>();
+    //         using var db = app.ApplicationServices
+    //         .CreateScope()
+    //         .ServiceProvider
+    //         .GetRequiredService<ApplicationContext>();
         
-        db.Database.EnsureDeleted();
-        db.Database.EnsureCreated();
+    //     db.Database.EnsureDeleted();
+    //     db.Database.EnsureCreated();
 
-        for (int i = 1; i <= 5; i++)
-        {
-            db.Store.Add(new src.Domain.Store{Name = $"Store {i}"});
-            db.Products.Add(new src.Domain.Product{Description = $"Procuct {i}"});
+    //     for (int i = 1; i <= 5; i++)
+    //     {
+    //         db.Store.Add(new src.Domain.Store{Name = $"Store {i}"});
+    //         db.Products.Add(new src.Domain.Product{Description = $"Procuct {i}"});
 
-            db.SaveChanges();
-        }
+    //         db.SaveChanges();
+    //     }
         
-        }
-    }
+    //     }
+    // }
 }

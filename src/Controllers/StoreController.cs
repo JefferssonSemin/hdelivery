@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using EFCore.HDelivery.Data;
 using EFCore.HDelivery.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +19,9 @@ namespace EFCore.HDelivery.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Store> Get([FromServices] ApplicationContext db )
+        public IEnumerable<Store> Get([FromServices] ApplicationContext db)
         {
-            var store = db.Store.ToArray();
+            var store = db.Stores.ToArray();
 
             return store;
         }

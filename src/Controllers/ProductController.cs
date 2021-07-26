@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using EFCore.HDelivery.Data;
-using EFCore.HDelivery.Domain;
+using EFCore.HDelivery.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -14,18 +10,22 @@ namespace EFCore.HDelivery.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ILogger<ProductController> logger, IProductRepository productRepository)
         {
             _logger = logger;
+            _productRepository = productRepository;
         }
 
-        [HttpGet]
-        public IEnumerable<Product> Get([FromServices] ApplicationContext db )
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            var product = db.Products.ToArray();
+            var products = await _productRepository.GetByIdAsync(id);
 
-            return product;
+            return Ok(products);
         }
+        
+        
     }
 }

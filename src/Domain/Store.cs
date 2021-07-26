@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+
 namespace EFCore.HDelivery.Domain
 {
-  public class Store : Abstract.BaseEntity
-  {
-      public string Name { get; set; }
-  }
+    public class Store : Abstract.BaseEntity
+    {
+        public string Name { get; set; }
+
+    }
 }

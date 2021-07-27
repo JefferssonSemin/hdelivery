@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using EFCore.HDelivery.Data.Repositories;
+using EFCore.HDelivery.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -25,7 +26,14 @@ namespace EFCore.HDelivery.Controllers
 
             return Ok(products);
         }
-        
-        
+
+        [HttpPost]
+        public IActionResult CreateProduct(Product product)
+        {
+            _productRepository.Add(product);
+            var saved = _productRepository.Save();
+
+            return Ok(product);
+        }
     }
 }

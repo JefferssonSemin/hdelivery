@@ -44,8 +44,19 @@ namespace EFCore.HDelivery.Controllers
             var product = await _productRepository.GetByIdAsync(id);
 
             _productRepository.Remove(product);
-            
-           _unitOfWork.Commit();
+
+            _unitOfWork.Commit();
+
+            return Ok(product);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchProductAsync([FromQuery] string description)
+        {
+            var product = await _productRepository
+                .GetDataAsync(
+                    p => p.Description.Contains(description),
+                    take: 2);
 
             return Ok(product);
         }

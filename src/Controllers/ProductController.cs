@@ -12,11 +12,13 @@ namespace EFCore.HDelivery.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProductController(ILogger<ProductController> logger, IProductRepository productRepository)
+        public ProductController(ILogger<ProductController> logger, IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet("{id}")]
@@ -31,7 +33,7 @@ namespace EFCore.HDelivery.Controllers
         public IActionResult CreateProduct(Product product)
         {
             _productRepository.Add(product);
-            var saved = _productRepository.Save();
+            var saved = _unitOfWork.Commit();
 
             return Ok(product);
         }

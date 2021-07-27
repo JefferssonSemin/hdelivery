@@ -7,6 +7,5 @@ namespace EFCore.HDelivery.Data.Repositories
     {
         Task<Product> GetByIdAsync(int id);
         void Add(Product product);
-        bool Save();
     }
 }

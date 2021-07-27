@@ -24,10 +24,5 @@ namespace EFCore.HDelivery.Data.Repositories
         {
             _dbSet.Add(product);
         }
-
-        public bool Save()
-        {
-            return _context.SaveChanges() > 0;
-        }
     }
 }

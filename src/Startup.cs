@@ -33,6 +33,7 @@ namespace EFCore.HDelivery
                     .EnableSensitiveDataLogging());
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

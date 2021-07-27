@@ -37,5 +37,17 @@ namespace EFCore.HDelivery.Controllers
 
             return Ok(product);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveProduct(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+
+            _productRepository.Remove(product);
+            
+           _unitOfWork.Commit();
+
+            return Ok(product);
+        }
     }
 }

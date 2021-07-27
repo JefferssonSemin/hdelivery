@@ -1,11 +1,9 @@
-using System.Threading.Tasks;
+using EFCore.HDelivery.Data.Repositories.Base;
 using EFCore.HDelivery.Domain;
 
 namespace EFCore.HDelivery.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IGenericRepository<Product>
     {
-        Task<Product> GetByIdAsync(int id);
-        void Add(Product product);
     }
 }
